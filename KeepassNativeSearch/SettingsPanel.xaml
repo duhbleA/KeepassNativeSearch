@@ -52,7 +52,7 @@
             </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="4">
-            <CheckBox x:Name="ClearClipboardCheckbox" Content="{x:Static res:Resources.EntriesToSearchInLabel}"
+            <CheckBox x:Name="ClearClipboardCheckbox" Content="{x:Static res:Resources.ClearAfterDurationLabel}"
                       Margin="0,0,0,20" Click="ClearClipboardCheckboxOnClick" />
             <StackPanel Orientation="Horizontal">
                 <TextBox x:Name="ClearClipboardDurationTextBox"
