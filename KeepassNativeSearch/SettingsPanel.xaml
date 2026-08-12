@@ -1,0 +1,69 @@
+<UserControl x:Class="KeepassNativeSearch.SettingsPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:res="clr-namespace:KeepassNativeSearch"
+             mc:Ignorable="d">
+    <Grid Margin="70, 10, 0, 10">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical" Grid.Row="0" Margin="0,0,0,20">
+            <Label Margin="0,0,0,5" Content="{x:Static res:Resources.KeepassFileLabel}" />
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="DatabaseAbsolutePathTextBox" KeyUp="DatabaseAbsolutePathTextBoxOnTextChanged"
+                         Width="250" Margin="0,0,5, 0" />
+                <Button Content="Browse" Click="BrowserDatabaseOpenOnButtonClick" Width="70" />
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Row="1" Margin="0,0,0,20">
+            <Label Margin="0,0,0,5" Content="{x:Static res:Resources.KeePassFilePasswordLabel}" />
+            <PasswordBox x:Name="DatabasePasswordBox" HorizontalAlignment="Left" Width="250"
+                         Margin="0,0,5, 0" KeyUp="DatabasePasswordBoxOnPasswordChanged" />
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Row="2" Margin="0,0,0,20">
+            <Label Margin="0,0,0,5" Content="{x:Static res:Resources.KeyFileLabel}" />
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="KeyFileAbsolutePathTextBox" KeyUp="KeyFileAbsolutePathTextBoxOnKeyUp" Width="250"
+                         Margin="0,0,5, 0" />
+                <Button Content="Browse" Click="BrowserKeyFileOpenOnButtonClick" Width="70" />
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Row="3" Margin="0,0,0,20">
+            <Label Margin="0,0,0,5" Content="{x:Static res:Resources.EntriesToSearchInLabel}" />
+            <StackPanel Orientation="Vertical">
+                <CheckBox x:Name="SearchTitleCheckBox" Content="{x:Static res:Resources.TitleLabel}"
+                          Click="CheckBoxOnClicked" />
+                <CheckBox x:Name="SearchNotesCheckBox" Content="{x:Static res:Resources.NoteLabel}"
+                          Click="CheckBoxOnClicked" />
+                <CheckBox x:Name="SearchUrlCheckBox" Content="{x:Static res:Resources.UrlLabel}"
+                          Click="CheckBoxOnClicked" />
+                <CheckBox x:Name="SearchGroupCheckBox" Content="{x:Static res:Resources.GroupLabel}"
+                          Click="CheckBoxOnClicked" />
+                <CheckBox x:Name="SearchTagsCheckBox" Content="{x:Static res:Resources.TagsLabel}"
+                          Click="CheckBoxOnClicked" />
+                <CheckBox x:Name="SearchUserNameCheckBox" Content="{x:Static res:Resources.UsernameLabel}"
+                          Click="CheckBoxOnClicked" />
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Row="4">
+            <CheckBox x:Name="ClearClipboardCheckbox" Content="{x:Static res:Resources.EntriesToSearchInLabel}"
+                      Margin="0,0,0,20" Click="ClearClipboardCheckboxOnClick" />
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="ClearClipboardDurationTextBox"
+                         PreviewTextInput="ClearClipboardDurationTextBoxOnPreviewTextInput"
+                         DataObject.Pasting="ClearClipboardDurationTextBoxOnPasting"
+                         InputMethod.IsInputMethodEnabled="False" Width="50" />
+                <Label Margin="5,0,0,0" VerticalAlignment="Bottom" Content="{x:Static res:Resources.SecondsLabel}" />
+            </StackPanel>
+            <Label x:Name="DurationRangeWarningLabel" Visibility="Hidden" Margin="0,0,0,5"
+                   Content="{x:Static res:Resources.DurationWarningLabel}" />
+        </StackPanel>
+
+    </Grid>
+</UserControl>

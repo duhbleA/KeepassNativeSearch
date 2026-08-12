@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeepassNativeSearch", "KeepassNativeSearch\KeepassNativeSearch.csproj", "{FBB27756-3B96-465E-B7DF-9D23B491173E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FBB27756-3B96-465E-B7DF-9D23B491173E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBB27756-3B96-465E-B7DF-9D23B491173E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBB27756-3B96-465E-B7DF-9D23B491173E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBB27756-3B96-465E-B7DF-9D23B491173E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

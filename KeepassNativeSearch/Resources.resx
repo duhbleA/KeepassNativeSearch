@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
+            PublicKeyToken=b77a5c561934e089
+        </value>
+    </resheader>
+    <data name="TitleLabel" xml:space="preserve">
+        <value>Title</value>
+    </data>
+    <data name="UsernameLabel" xml:space="preserve">
+        <value>Username</value>
+    </data>
+    <data name="PasswordLabel" xml:space="preserve">
+        <value>Password</value>
+    </data>
+    <data name="UrlLabel" xml:space="preserve">
+        <value>Url</value>
+    </data>
+    <data name="TagsLabel" xml:space="preserve">
+        <value>Tags</value>
+    </data>
+    <data name="NoteLabel" xml:space="preserve">
+        <value>Notes</value>
+    </data>
+    <data name="NonApplicableLabel" xml:space="preserve">
+        <value>N/A</value>
+    </data>
+    <data name="GroupLabel" xml:space="preserve">
+        <value>Group</value>
+    </data>
+    <data name="PasswordShowHideLabel" xml:space="preserve">
+        <value>Password 👁</value>
+    </data>
+
+    <data name="EmptyUsernameFieldLabel" xml:space="preserve">
+        <value>Empty username field</value>
+    </data>
+
+    <data name="LoadedSuccessfullyLabel" xml:space="preserve">
+        <value>KeePass file loaded successfully</value>
+    </data>
+
+    <data name="FailedLoadingLabel" xml:space="preserve">
+        <value>Failed loading KeePass file</value>
+    </data>
+
+    <data name="ClosedFileLabel" xml:space="preserve">
+        <value>KeePass file closed</value>
+    </data>
+
+    <data name="NoGroupLabel" xml:space="preserve">
+        <value>No Group</value>
+    </data>
+
+    <data name="OpenFileLabel" xml:space="preserve">
+        <value>Open KeePass File</value>
+    </data>
+
+    <data name="OpenFileSubtitleLabel" xml:space="preserve">
+        <value>Open KeePass file provided in the plugin settings</value>
+    </data>
+
+    <data name="CloseFileLabel" xml:space="preserve">
+        <value>Close KeePass File</value>
+    </data>
+
+    <data name="CloseFileSubtitleLabel" xml:space="preserve">
+        <value>Closes the KeePass file provided in the plugin settings</value>
+    </data>
+
+    <data name="NoFileConfigLabel" xml:space="preserve">
+        <value>No KeePass File configured</value>
+    </data>
+
+    <data name="NoFileConfigSubtitleLabel" xml:space="preserve">
+        <value>No path to a KeePass file was provided in the plugin settings</value>
+    </data>
+
+    <data name="FileStatusLabel" xml:space="preserve">
+        <value>KeePass File Status</value>
+    </data>
+
+    <data name="OpenStatusLabel" xml:space="preserve">
+        <value>Open</value>
+    </data>
+
+    <data name="ClosedStatusLabel" xml:space="preserve">
+        <value>Closed</value>
+    </data>
+
+    <data name="KeepassFileLabel" xml:space="preserve">
+        <value>KeePass File:</value>
+    </data>
+    <data name="KeePassFilePasswordLabel" xml:space="preserve">
+        <value>KeePass File Password:</value>
+    </data>
+    <data name="KeyFileLabel" xml:space="preserve">
+        <value>Key File:</value>
+    </data>
+
+    <data name="EntriesToSearchInLabel" xml:space="preserve">
+        <value>Entry values to search in:</value>
+    </data>
+
+    <data name="ClearAfterDurationLabel" xml:space="preserve">
+        <value>Clear clipboard after a duration</value>
+    </data>
+
+    <data name="SecondsLabel" xml:space="preserve">
+        <value>seconds</value>
+    </data>
+    <data name="DurationWarningLabel" xml:space="preserve">
+        <value>* Duration is out of the acceptable range (5-1800). Using default (10).</value>
+    </data>
+
+</root>

@@ -1,0 +1,11 @@
+{
+  "ID": "5E19B1F1E7BB4FC89C626DDCECD5D6CC",
+  "ActionKeyword": "kp",
+  "Name": "KeepassNativeSearch",
+  "Description": "Search and copy passwords from a KeePass file",
+  "Author": "CallMeDuracell",
+  "Version": "1.0.2",
+  "Language": "csharp",
+  "ExecuteFileName": "KeepassNativeSearch.dll",
+  "IcoPath": "Images\\keepassdb.png"
+}
