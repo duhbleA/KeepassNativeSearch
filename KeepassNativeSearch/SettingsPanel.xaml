@@ -12,6 +12,7 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <StackPanel Orientation="Vertical" Grid.Row="0" Margin="0,0,0,20">
             <Label Margin="0,0,0,5" Content="{x:Static res:Resources.KeepassFileLabel}" />
@@ -52,7 +53,7 @@
             </StackPanel>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="4">
-            <CheckBox x:Name="ClearClipboardCheckbox" Content="{x:Static res:Resources.EntriesToSearchInLabel}"
+            <CheckBox x:Name="ClearClipboardCheckbox" Content="{x:Static res:Resources.ClearAfterDurationLabel}"
                       Margin="0,0,0,20" Click="ClearClipboardCheckboxOnClick" />
             <StackPanel Orientation="Horizontal">
                 <TextBox x:Name="ClearClipboardDurationTextBox"
@@ -64,6 +65,18 @@
             <Label x:Name="DurationRangeWarningLabel" Visibility="Hidden" Margin="0,0,0,5"
                    Content="{x:Static res:Resources.DurationWarningLabel}" />
         </StackPanel>
-
+        <StackPanel Orientation="Vertical" Grid.Row="5">
+            <CheckBox x:Name="CloseDbAfterDurationCheckBox" Content="{x:Static res:Resources.CloseDbAfterDurationLabel}"
+                      Margin="0,0,0,20" Click="CloseDbAfterDurationCheckBoxOnClick"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="CloseDbAfterDurationTextBox"
+                         PreviewTextInput="CloseDbAfterDurationTextBoxOnPreviewTextInput"
+                         DataObject.Pasting="CloseDbAfterDurationTextBoxOnPasting"
+                         InputMethod.IsInputMethodEnabled="False" Width="50" />
+                <Label Margin="5,0,0,0" VerticalAlignment="Bottom" Content="{x:Static res:Resources.MinutesLabel}" />
+            </StackPanel>
+            <Label x:Name="CloseDbDurationRangeWarningLabel" Visibility="Hidden" Margin="0,0,0,5"
+                   Content="{x:Static res:Resources.CloseDbAfterDurationWarningLabel}" />
+        </StackPanel>
     </Grid>
 </UserControl>
