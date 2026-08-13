@@ -38,4 +38,21 @@ public class TaskExecutor
             // Task was canceled because the user changed input again; ignore safely
         }
     }
+
+    /**
+     * <summary>
+     * Cancels any pending actions.
+     * </summary>
+     */
+    public void Cancel()
+    {
+        try
+        {
+            _cts?.Cancel();
+        }
+        catch
+        {
+            // Safely do nothing
+        }
+    }
 }

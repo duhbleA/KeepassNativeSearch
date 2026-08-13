@@ -13,6 +13,7 @@ public class Main : IAsyncPlugin, ISettingProvider, IContextMenu
 
     private readonly TaskExecutor _loadDatabaseTaskExecutor = new();
     private readonly TaskExecutor _clearClipboardTaskExecutor = new();
+    private readonly TaskExecutor _closeDbTaskExecutor = new();
 
     private static readonly string? LogTag = typeof(Main).Namespace;
 
@@ -27,7 +28,11 @@ public class Main : IAsyncPlugin, ISettingProvider, IContextMenu
             if (query.FirstSearch == Constants.UserEntryConstants.DatabaseControlKeyword)
             {
                 return ResultsFactory.CreateControlResults(!string.IsNullOrWhiteSpace(_settings.KeyFileAbsolutePath),
-                    () => { _loadDatabaseTaskExecutor.Execute(LoadDatabase, 0); }, CloseDatabase);
+                    () => { _loadDatabaseTaskExecutor.Execute(LoadDatabase, 0); }, () =>
+                    {
+                        _closeDbTaskExecutor.Cancel();
+                        CloseDatabase();
+                    });
             }
 
             /*
@@ -94,6 +99,11 @@ public class Main : IAsyncPlugin, ISettingProvider, IContextMenu
             _context?.API.LogInfo(LogTag, "Successfully loaded database");
             _context?.API.ShowMsg(Resources.LoadedSuccessfullyLabel, "",
                 Constants.ImageKeys.Main);
+
+            if (decryptedFields.CloseDbAfterDuration)
+            {
+                _closeDbTaskExecutor.Execute(CloseDatabase, decryptedFields.CloseDbDurationMinutes * 60000);
+            }
         }
         catch
         {
@@ -121,6 +131,7 @@ public class Main : IAsyncPlugin, ISettingProvider, IContextMenu
         _context?.API.SaveSettingJsonStorage<Settings>();
 
         if (!hasDatabaseChanges) return;
+        _closeDbTaskExecutor.Cancel();
         CloseDatabase();
     }
 

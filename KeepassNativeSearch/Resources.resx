@@ -141,7 +141,7 @@
     </data>
     
     <data name="CloseDbAfterDurationWarningLabel" xml:space="preserve">
-        <value>* Duration is out of the acceptable range (1-24). Using default (10).</value>
+        <value>* Duration is out of the acceptable range (1-1440). Using default (10).</value>
     </data>
 
 </root>
