@@ -81,12 +81,22 @@ public class Main : IAsyncPlugin, ISettingProvider, IContextMenu
      * Attempts to load and initialize the database based on the settings parameters provided by the user.
      * </summary>
      */
-    private void LoadDatabase()
+    private async void LoadDatabase()
     {
         try
         {
             if (_db != null) return;
 
+            if (_settings.RequireWindowsHello)
+            {
+                var result = await WindowsHelloHelper.Authenticate(Resources.WindowsHelloReasonMessage);
+                if (!result)
+                {
+                    _context?.API.ShowMsg(Resources.FailedLoadingLabel, "", Constants.ImageKeys.Main);
+                    return;
+                }
+            }
+            
             _context?.API.LogInfo(LogTag, "Attempting to load database");
             // Need to decrypt the encrypted fields before passing them to the KeePass library to load the database
             var decryptedFields = _settings.DecryptValues();

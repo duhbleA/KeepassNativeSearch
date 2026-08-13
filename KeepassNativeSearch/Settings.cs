@@ -40,6 +40,8 @@ public class Settings
      */
     public int CloseDbDurationMinutes { get; set; } = SettingsDefaults.CloseDbDurationMinutes;
 
+    public bool RequireWindowsHello { get; set; } = SettingsDefaults.RequireWindowsHello;
+
     private bool Equals(Settings other)
     {
         return DatabaseAbsolutePath == other.DatabaseAbsolutePath && DatabasePassword == other.DatabasePassword &&
@@ -48,7 +50,7 @@ public class Settings
                SearchUserName == other.SearchUserName && ClearClipboard == other.ClearClipboard &&
                ClearClipboardDurationSeconds == other.ClearClipboardDurationSeconds &&
                SearchGroups == other.SearchGroups && CloseDbAfterDuration == other.CloseDbAfterDuration &&
-               CloseDbDurationMinutes == other.CloseDbDurationMinutes;
+               CloseDbDurationMinutes == other.CloseDbDurationMinutes && RequireWindowsHello == other.RequireWindowsHello;
     }
 
     public override bool Equals(object? obj)
@@ -81,6 +83,7 @@ public class Settings
         hashCode.Add(ClearClipboardDurationSeconds);
         hashCode.Add(CloseDbAfterDuration);
         hashCode.Add(CloseDbDurationMinutes);
+        hashCode.Add(RequireWindowsHello);
         return hashCode.ToHashCode();
     }
 
@@ -107,6 +110,7 @@ public class Settings
         ClearClipboardDurationSeconds = updatedSettings.ClearClipboardDurationSeconds;
         CloseDbAfterDuration = updatedSettings.CloseDbAfterDuration;
         CloseDbDurationMinutes = updatedSettings.CloseDbDurationMinutes;
+        RequireWindowsHello = updatedSettings.RequireWindowsHello;
     }
 
     /**
@@ -131,6 +135,7 @@ public class Settings
             ClearClipboardDurationSeconds = ClearClipboardDurationSeconds,
             CloseDbAfterDuration = CloseDbAfterDuration,
             CloseDbDurationMinutes = CloseDbDurationMinutes,
+            RequireWindowsHello = RequireWindowsHello
         };
     }
 
@@ -163,4 +168,5 @@ public static class SettingsDefaults
     public const int ClearClipboardDurationSeconds = 10;
     public const bool CloseDbAfterDuration = true;
     public const int CloseDbDurationMinutes = 10;
+    public const bool RequireWindowsHello = true;
 }

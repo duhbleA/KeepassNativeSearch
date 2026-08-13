@@ -38,6 +38,7 @@ public partial class SettingsPanel
             MinClipboardClearDurationSec, MaxClipboardClearDurationSec);
         ClearClipboardDurationTextBox.Text = clipboardDurationSeconds.ToString();
         ClearClipboardDurationTextBox.IsEnabled = initialSettings.ClearClipboard;
+        RequireWindowsHelloCheckBox.IsChecked = initialSettings.RequireWindowsHello;
         if (!initialSettings.ClearClipboard)
         {
             DurationRangeWarningLabel.Visibility = Visibility.Hidden;
@@ -149,6 +150,11 @@ public partial class SettingsPanel
         DoOnPasting(sender, e);
     }
 
+    private void RequireWindowsHelloCheckBoxOnClick(object sender, RoutedEventArgs e)
+    {
+        UpdateContent();
+    }
+
     private void UpdateContent()
     {
         _taskExecutor.Execute(() =>
@@ -199,6 +205,7 @@ public partial class SettingsPanel
                     SearchGroups = SearchGroupCheckBox.IsChecked ?? SettingsDefaults.SearchGroups,
                     SearchUserName = SearchUserNameCheckBox.IsChecked ?? SettingsDefaults.SearchUsername,
                     ClearClipboard = ClearClipboardCheckbox.IsChecked ?? SettingsDefaults.ClearClipboard,
+                    RequireWindowsHello = RequireWindowsHelloCheckBox.IsChecked ?? SettingsDefaults.RequireWindowsHello,
                     ClearClipboardDurationSeconds = Normalize(clipboardDuration, MinClipboardClearDurationSec,
                         MaxClipboardClearDurationSec),
                     CloseDbAfterDuration =

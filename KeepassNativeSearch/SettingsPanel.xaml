@@ -13,6 +13,7 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
+            <RowDefinition />
         </Grid.RowDefinitions>
         <StackPanel Orientation="Vertical" Grid.Row="0" Margin="0,0,0,20">
             <Label Margin="0,0,0,5" Content="{x:Static res:Resources.KeepassFileLabel}" />
@@ -25,7 +26,10 @@
         <StackPanel Orientation="Vertical" Grid.Row="1" Margin="0,0,0,20">
             <Label Margin="0,0,0,5" Content="{x:Static res:Resources.KeePassFilePasswordLabel}" />
             <PasswordBox x:Name="DatabasePasswordBox" HorizontalAlignment="Left" Width="250"
-                         Margin="0,0,5, 0" KeyUp="DatabasePasswordBoxOnPasswordChanged" />
+                         Margin="0,0,5, 20" KeyUp="DatabasePasswordBoxOnPasswordChanged" />
+            
+            <CheckBox x:Name="RequireWindowsHelloCheckBox" Content="{x:Static res:Resources.RequireWindowsHelloLabel}"
+                      Margin="0,0,0,0" Click="RequireWindowsHelloCheckBoxOnClick"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="2" Margin="0,0,0,20">
             <Label Margin="0,0,0,5" Content="{x:Static res:Resources.KeyFileLabel}" />
