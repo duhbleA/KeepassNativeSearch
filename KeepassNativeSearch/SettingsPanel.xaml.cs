@@ -69,6 +69,10 @@ public partial class SettingsPanel
                     ? Visibility.Visible
                     : Visibility.Hidden;
         }
+
+        CloseDbOnSessionChangeCheckBox.IsChecked = initialSettings.CloseDbUserSession;
+        CloseDbOnLockCheckBox.IsChecked = initialSettings.CloseDbLockScreen;
+        CloseDbOnSleepCheckBox.IsChecked = initialSettings.CloseDbComputerSleep;
     }
 
     private void BrowserDatabaseOpenOnButtonClick(object sender, RoutedEventArgs e)
@@ -155,6 +159,21 @@ public partial class SettingsPanel
         UpdateContent();
     }
 
+    private void CloseDbOnLockCheckBoxOnClick(object sender, RoutedEventArgs e)
+    {
+        UpdateContent();
+    }
+
+    private void CloseDbOnSleepCheckBoxOnClick(object sender, RoutedEventArgs e)
+    {
+        UpdateContent();
+    }
+
+    private void CloseDbOnSessionChangeCheckBoxOnClick(object sender, RoutedEventArgs e)
+    {
+        UpdateContent();
+    }
+
     private void UpdateContent()
     {
         _taskExecutor.Execute(() =>
@@ -211,7 +230,11 @@ public partial class SettingsPanel
                     CloseDbAfterDuration =
                         CloseDbAfterDurationCheckBox.IsChecked ?? SettingsDefaults.CloseDbAfterDuration,
                     CloseDbDurationMinutes = Normalize(closeDbDuration, MinCloseDbAfterDurationMin,
-                        MaxCloseDbAfterDurationMin)
+                        MaxCloseDbAfterDurationMin),
+                    CloseDbComputerSleep = CloseDbOnSleepCheckBox.IsChecked ?? SettingsDefaults.CloseDbSleep,
+                    CloseDbUserSession = CloseDbOnSessionChangeCheckBox.IsChecked ??
+                                         SettingsDefaults.CloseDbUserSessionChange,
+                    CloseDbLockScreen = CloseDbOnLockCheckBox.IsChecked ?? SettingsDefaults.CloseDbLockChange
                 };
                 _onSettingsChanged(updatedSettings);
             });

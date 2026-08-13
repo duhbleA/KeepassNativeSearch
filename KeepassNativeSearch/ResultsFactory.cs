@@ -4,6 +4,9 @@ using Pidamg.KeePass;
 
 namespace KeepassNativeSearch;
 
+/**
+ * <summary>Factory to create Results in lists for Flow Launcher.</summary>
+ */
 public static class ResultsFactory
 {
     /**

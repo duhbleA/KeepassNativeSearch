@@ -26,14 +26,11 @@
         <StackPanel Orientation="Vertical" Grid.Row="1" Margin="0,0,0,20">
             <Label Margin="0,0,0,5" Content="{x:Static res:Resources.KeePassFilePasswordLabel}" />
             <PasswordBox x:Name="DatabasePasswordBox" HorizontalAlignment="Left" Width="250"
-                         Margin="0,0,5, 20" KeyUp="DatabasePasswordBoxOnPasswordChanged" />
-            
-            <CheckBox x:Name="RequireWindowsHelloCheckBox" Content="{x:Static res:Resources.RequireWindowsHelloLabel}"
-                      Margin="0,0,0,0" Click="RequireWindowsHelloCheckBoxOnClick"/>
+                         Margin="0,0,5, 0" KeyUp="DatabasePasswordBoxOnPasswordChanged" />
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="2" Margin="0,0,0,20">
             <Label Margin="0,0,0,5" Content="{x:Static res:Resources.KeyFileLabel}" />
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Margin="0, 0, 0, 0">
                 <TextBox x:Name="KeyFileAbsolutePathTextBox" KeyUp="KeyFileAbsolutePathTextBoxOnKeyUp" Width="250"
                          Margin="0,0,5, 0" />
                 <Button Content="Browse" Click="BrowserKeyFileOpenOnButtonClick" Width="70" />
@@ -56,10 +53,10 @@
                           Click="CheckBoxOnClicked" />
             </StackPanel>
         </StackPanel>
-        <StackPanel Orientation="Vertical" Grid.Row="4">
+        <StackPanel Orientation="Vertical" Grid.Row="4" Margin="0, 0, 0, 0">
             <CheckBox x:Name="ClearClipboardCheckbox" Content="{x:Static res:Resources.ClearAfterDurationLabel}"
                       Margin="0,0,0,20" Click="ClearClipboardCheckboxOnClick" />
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Margin="0, 0, 0, 0">
                 <TextBox x:Name="ClearClipboardDurationTextBox"
                          PreviewTextInput="ClearClipboardDurationTextBoxOnPreviewTextInput"
                          DataObject.Pasting="ClearClipboardDurationTextBoxOnPasting"
@@ -68,6 +65,17 @@
             </StackPanel>
             <Label x:Name="DurationRangeWarningLabel" Visibility="Hidden" Margin="0,0,0,5"
                    Content="{x:Static res:Resources.DurationWarningLabel}" />
+            <Label Margin="0,0,0,5" Content="{x:Static res:Resources.AdditionalSecurityLabel}" />
+            <CheckBox x:Name="RequireWindowsHelloCheckBox" Content="{x:Static res:Resources.RequireWindowsHelloLabel}"
+                      Margin="0,0,0,0" Click="RequireWindowsHelloCheckBoxOnClick"/>
+            <CheckBox x:Name="CloseDbOnLockCheckBox" Content="{x:Static res:Resources.CloseDbOnLockLabel}"
+                      Margin="0,0,0,0" Click="CloseDbOnLockCheckBoxOnClick"/>
+            <CheckBox x:Name="CloseDbOnSleepCheckBox" Content="{x:Static res:Resources.CloseDbOnSleepLabel}"
+                      Margin="0,0,0,0" Click="CloseDbOnSleepCheckBoxOnClick"/>
+            <CheckBox x:Name="CloseDbOnSessionChangeCheckBox" Content="{x:Static res:Resources.CloseDbOnUserSwitch}"
+                      Margin="0,0,0,0" Click="CloseDbOnSessionChangeCheckBoxOnClick"/>
+           
+            
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="5">
             <CheckBox x:Name="CloseDbAfterDurationCheckBox" Content="{x:Static res:Resources.CloseDbAfterDurationLabel}"

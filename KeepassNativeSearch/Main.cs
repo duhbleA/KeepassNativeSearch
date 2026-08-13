@@ -15,6 +15,8 @@ public class Main : IAsyncPlugin, ISettingProvider, IContextMenu
     private readonly TaskExecutor _clearClipboardTaskExecutor = new();
     private readonly TaskExecutor _closeDbTaskExecutor = new();
 
+    private Win32StateMonitor? _monitor;
+
     private static readonly string? LogTag = typeof(Main).Namespace;
 
     public Task<List<Result>> QueryAsync(Query query, CancellationToken token)
@@ -62,7 +64,14 @@ public class Main : IAsyncPlugin, ISettingProvider, IContextMenu
     {
         _context = context;
         _settings = _context.API.LoadSettingJsonStorage<Settings>();
-
+        
+        AppDomain.CurrentDomain.ProcessExit += (_, _) => {
+            _monitor?.Close();
+        };
+        
+        _monitor = new Win32StateMonitor(_settings, CloseDatabase);
+        _monitor?.Start();
+        
         return Task.Run(() => { });
     }
 

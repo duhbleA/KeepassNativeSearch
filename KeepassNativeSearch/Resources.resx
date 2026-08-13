@@ -152,4 +152,25 @@
         <value>Authenticate to open KeePass file</value>
     </data>
 
+    <data name="CloseDbOnLockLabel" xml:space="preserve">
+        <value>Close KeePass file when the user session locks</value>
+    </data>
+
+    <data name="CloseDbOnSleepLabel" xml:space="preserve">
+        <value>Close KeePass file when the computer sleeps</value>
+    </data>
+
+    <data name="AdditionalSecurityLabel" xml:space="preserve">
+        <value>Additional security:</value>
+    </data>
+
+    <data name="CloseDbOnUserSwitch" xml:space="preserve">
+        <value>Close KeePass file when the current user logs out or changes</value>
+    </data>
+
+    <data name="CloseDbOnSessionChangeLabel" xml:space="preserve">
+        <value>Close KeePass file when the computer locks</value>
+    </data>
+
+
 </root>

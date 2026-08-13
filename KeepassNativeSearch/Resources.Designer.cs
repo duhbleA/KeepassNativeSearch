@@ -7,10 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace KeepassNativeSearch {
+namespace KeepassNativeSearch
+{
     using System;
-    
-    
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -18,280 +19,274 @@ namespace KeepassNativeSearch {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder",
+        "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources {
-        
+    public class Resources
+    {
+
         private static global::System.Resources.ResourceManager resourceMan;
-        
+
         private static global::System.Globalization.CultureInfo resourceCulture;
-        
-        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance",
+            "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources()
+        {
         }
-        
+
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
-        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
-            get {
-                if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("KeepassNativeSearch.Resources", typeof(Resources).Assembly);
+        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState
+            .Advanced)]
+        public static global::System.Resources.ResourceManager ResourceManager
+        {
+            get
+            {
+                if (object.ReferenceEquals(resourceMan, null))
+                {
+                    global::System.Resources.ResourceManager temp =
+                        new global::System.Resources.ResourceManager("KeepassNativeSearch.Resources",
+                            typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
+
                 return resourceMan;
             }
         }
-        
+
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
-        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
-            get {
-                return resourceCulture;
-            }
-            set {
-                resourceCulture = value;
-            }
+        [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState
+            .Advanced)]
+        public static global::System.Globalization.CultureInfo Culture
+        {
+            get { return resourceCulture; }
+            set { resourceCulture = value; }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Group.
         /// </summary>
-        public static string GroupLabel {
-            get {
-                return ResourceManager.GetString("GroupLabel", resourceCulture);
-            }
+        public static string GroupLabel
+        {
+            get { return ResourceManager.GetString("GroupLabel", resourceCulture); }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to N/A.
         /// </summary>
-        public static string NonApplicableLabel {
-            get {
-                return ResourceManager.GetString("NonApplicableLabel", resourceCulture);
-            }
+        public static string NonApplicableLabel
+        {
+            get { return ResourceManager.GetString("NonApplicableLabel", resourceCulture); }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Notes.
         /// </summary>
-        public static string NoteLabel {
-            get {
-                return ResourceManager.GetString("NoteLabel", resourceCulture);
-            }
+        public static string NoteLabel
+        {
+            get { return ResourceManager.GetString("NoteLabel", resourceCulture); }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
-        public static string PasswordLabel {
-            get {
-                return ResourceManager.GetString("PasswordLabel", resourceCulture);
-            }
+        public static string PasswordLabel
+        {
+            get { return ResourceManager.GetString("PasswordLabel", resourceCulture); }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Tags.
         /// </summary>
-        public static string TagsLabel {
-            get {
-                return ResourceManager.GetString("TagsLabel", resourceCulture);
-            }
+        public static string TagsLabel
+        {
+            get { return ResourceManager.GetString("TagsLabel", resourceCulture); }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Title.
         /// </summary>
-        public static string TitleLabel {
-            get {
-                return ResourceManager.GetString("TitleLabel", resourceCulture);
-            }
+        public static string TitleLabel
+        {
+            get { return ResourceManager.GetString("TitleLabel", resourceCulture); }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Url.
         /// </summary>
-        public static string UrlLabel {
-            get {
-                return ResourceManager.GetString("UrlLabel", resourceCulture);
-            }
+        public static string UrlLabel
+        {
+            get { return ResourceManager.GetString("UrlLabel", resourceCulture); }
         }
-        
+
         /// <summary>
         ///   Looks up a localized string similar to Username.
         /// </summary>
-        public static string UsernameLabel {
-            get {
-                return ResourceManager.GetString("UsernameLabel", resourceCulture);
-            }
+        public static string UsernameLabel
+        {
+            get { return ResourceManager.GetString("UsernameLabel", resourceCulture); }
+        }
+
+
+        public static string PasswordShowHideLabel
+        {
+            get { return ResourceManager.GetString("PasswordShowHideLabel", resourceCulture); }
+        }
+
+        public static string EmptyUsernameFieldLabel
+        {
+            get { return ResourceManager.GetString("EmptyUsernameFieldLabel", resourceCulture); }
+        }
+
+        public static string LoadedSuccessfullyLabel
+        {
+            get { return ResourceManager.GetString("LoadedSuccessfullyLabel", resourceCulture); }
+        }
+
+        public static string FailedLoadingLabel
+        {
+            get { return ResourceManager.GetString("FailedLoadingLabel", resourceCulture); }
+        }
+
+        public static string ClosedFileLabel
+        {
+            get { return ResourceManager.GetString("ClosedFileLabel", resourceCulture); }
+        }
+
+        public static string NoGroupLabel
+        {
+            get { return ResourceManager.GetString("NoGroupLabel", resourceCulture); }
+        }
+
+        public static string OpenFileLabel
+        {
+            get { return ResourceManager.GetString("OpenFileLabel", resourceCulture); }
+        }
+
+        public static string OpenFileSubtitleLabel
+        {
+            get { return ResourceManager.GetString("OpenFileSubtitleLabel", resourceCulture); }
+        }
+
+        public static string CloseFileLabel
+        {
+            get { return ResourceManager.GetString("CloseFileLabel", resourceCulture); }
+        }
+
+        public static string CloseFileSubtitleLabel
+        {
+            get { return ResourceManager.GetString("CloseFileSubtitleLabel", resourceCulture); }
+        }
+
+        public static string NoFileConfigLabel
+        {
+            get { return ResourceManager.GetString("NoFileConfigLabel", resourceCulture); }
+        }
+
+        public static string NoFileConfigSubtitleLabel
+        {
+            get { return ResourceManager.GetString("NoFileConfigSubtitleLabel", resourceCulture); }
+        }
+
+        public static string FileStatusLabel
+        {
+            get { return ResourceManager.GetString("FileStatusLabel", resourceCulture); }
+        }
+
+        public static string OpenStatusLabel
+        {
+            get { return ResourceManager.GetString("OpenStatusLabel", resourceCulture); }
+        }
+
+        public static string ClosedStatusLabel
+        {
+            get { return ResourceManager.GetString("ClosedStatusLabel", resourceCulture); }
+        }
+
+        public static string KeepassFileLabel
+        {
+            get { return ResourceManager.GetString("KeepassFileLabel", resourceCulture); }
+        }
+
+        public static string KeePassFilePasswordLabel
+        {
+            get { return ResourceManager.GetString("KeePassFilePasswordLabel", resourceCulture); }
+        }
+
+        public static string KeyFileLabel
+        {
+            get { return ResourceManager.GetString("KeyFileLabel", resourceCulture); }
+        }
+
+        public static string EntriesToSearchInLabel
+        {
+            get { return ResourceManager.GetString("EntriesToSearchInLabel", resourceCulture); }
+        }
+
+        public static string ClearAfterDurationLabel
+        {
+            get { return ResourceManager.GetString("ClearAfterDurationLabel", resourceCulture); }
+        }
+
+        public static string SecondsLabel
+        {
+            get { return ResourceManager.GetString("SecondsLabel", resourceCulture); }
+        }
+
+        public static string DurationWarningLabel
+        {
+            get { return ResourceManager.GetString("DurationWarningLabel", resourceCulture); }
+        }
+
+        public static string CloseDbAfterDurationLabel
+        {
+            get { return ResourceManager.GetString("CloseDbAfterDurationLabel", resourceCulture); }
+        }
+
+        public static string MinutesLabel
+        {
+            get { return ResourceManager.GetString("MinutesLabel", resourceCulture); }
+        }
+
+        public static string CloseDbAfterDurationWarningLabel
+        {
+            get { return ResourceManager.GetString("CloseDbAfterDurationWarningLabel", resourceCulture); }
+        }
+
+        public static string RequireWindowsHelloLabel
+        {
+            get { return ResourceManager.GetString("RequireWindowsHelloLabel", resourceCulture); }
+        }
+
+        public static string WindowsHelloReasonMessage
+        {
+            get { return ResourceManager.GetString("WindowsHelloReasonMessage", resourceCulture); }
+        }
+
+        public static string CloseDbOnLockLabel
+        {
+            get { return ResourceManager.GetString("CloseDbOnLockLabel", resourceCulture); }
+        }
+
+        public static string CloseDbOnSleepLabel
+        {
+            get { return ResourceManager.GetString("CloseDbOnSleepLabel", resourceCulture); }
+        }
+
+        public static string AdditionalSecurityLabel
+        {
+            get { return ResourceManager.GetString("AdditionalSecurityLabel", resourceCulture); }
         }
         
-        
-        public static string PasswordShowHideLabel {
-            get {
-                return ResourceManager.GetString("PasswordShowHideLabel", resourceCulture);
-            }
-        }
-        
-        public static string EmptyUsernameFieldLabel {
-            get {
-                return ResourceManager.GetString("EmptyUsernameFieldLabel", resourceCulture);
-            }
-        }
-        
-        public static string LoadedSuccessfullyLabel {
-            get {
-                return ResourceManager.GetString("LoadedSuccessfullyLabel", resourceCulture);
-            }
-        }
-        
-        public static string FailedLoadingLabel {
-            get {
-                return ResourceManager.GetString("FailedLoadingLabel", resourceCulture);
-            }
-        }
-        
-        public static string ClosedFileLabel {
-            get {
-                return ResourceManager.GetString("ClosedFileLabel", resourceCulture);
-            }
-        }
-        
-        public static string NoGroupLabel {
-            get {
-                return ResourceManager.GetString("NoGroupLabel", resourceCulture);
-            }
-        }
-        
-        public static string OpenFileLabel {
-            get {
-                return ResourceManager.GetString("OpenFileLabel", resourceCulture);
-            }
-        }
-        
-        public static string OpenFileSubtitleLabel {
-            get {
-                return ResourceManager.GetString("OpenFileSubtitleLabel", resourceCulture);
-            }
-        }
-        
-        public static string CloseFileLabel {
-            get {
-                return ResourceManager.GetString("CloseFileLabel", resourceCulture);
-            }
-        }
-        
-        public static string CloseFileSubtitleLabel {
-            get {
-                return ResourceManager.GetString("CloseFileSubtitleLabel", resourceCulture);
-            }
-        }
-        
-        public static string NoFileConfigLabel {
-            get {
-                return ResourceManager.GetString("NoFileConfigLabel", resourceCulture);
-            }
-        }
-        
-        public static string NoFileConfigSubtitleLabel {
-            get {
-                return ResourceManager.GetString("NoFileConfigSubtitleLabel", resourceCulture);
-            }
-        }
-        
-        public static string FileStatusLabel {
-            get {
-                return ResourceManager.GetString("FileStatusLabel", resourceCulture);
-            }
-        }
-        
-        public static string OpenStatusLabel {
-            get {
-                return ResourceManager.GetString("OpenStatusLabel", resourceCulture);
-            }
-        }
-        
-        public static string ClosedStatusLabel {
-            get {
-                return ResourceManager.GetString("ClosedStatusLabel", resourceCulture);
-            }
-        }
-        
-        public static string KeepassFileLabel {
-            get {
-                return ResourceManager.GetString("KeepassFileLabel", resourceCulture);
-            }
-        }
-        
-        public static string KeePassFilePasswordLabel {
-            get {
-                return ResourceManager.GetString("KeePassFilePasswordLabel", resourceCulture);
-            }
-        }
-        
-        public static string KeyFileLabel {
-            get {
-                return ResourceManager.GetString("KeyFileLabel", resourceCulture);
-            }
-        }
-        
-        public static string EntriesToSearchInLabel {
-            get {
-                return ResourceManager.GetString("EntriesToSearchInLabel", resourceCulture);
-            }
-        }
-        
-        public static string ClearAfterDurationLabel {
-            get {
-                return ResourceManager.GetString("ClearAfterDurationLabel", resourceCulture);
-            }
-        }
-        
-        public static string SecondsLabel {
-            get {
-                return ResourceManager.GetString("SecondsLabel", resourceCulture);
-            }
-        }
-        
-        public static string DurationWarningLabel {
-            get {
-                return ResourceManager.GetString("DurationWarningLabel", resourceCulture);
-            }
-        }
-        
-        public static string CloseDbAfterDurationLabel {
-            get {
-                return ResourceManager.GetString("CloseDbAfterDurationLabel", resourceCulture);
-            }
-        }
-        
-        public static string MinutesLabel {
-            get {
-                return ResourceManager.GetString("MinutesLabel", resourceCulture);
-            }
-        }
-        
-        public static string CloseDbAfterDurationWarningLabel {
-            get {
-                return ResourceManager.GetString("CloseDbAfterDurationWarningLabel", resourceCulture);
-            }
-        }
-        
-        public static string RequireWindowsHelloLabel {
-            get {
-                return ResourceManager.GetString("RequireWindowsHelloLabel", resourceCulture);
-            }
-        }
-        
-        public static string WindowsHelloReasonMessage {
-            get {
-                return ResourceManager.GetString("WindowsHelloReasonMessage", resourceCulture);
-            }
+        public static string CloseDbOnUserSwitch
+        {
+            get { return ResourceManager.GetString("CloseDbOnUserSwitch", resourceCulture); }
         }
     }
 }
