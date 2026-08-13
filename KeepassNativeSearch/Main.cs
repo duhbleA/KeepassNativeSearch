@@ -13,6 +13,7 @@ public class Main : IAsyncPlugin, ISettingProvider, IContextMenu
 
     private readonly TaskExecutor _loadDatabaseTaskExecutor = new();
     private readonly TaskExecutor _clearClipboardTaskExecutor = new();
+    private readonly TaskExecutor _closeDbTaskExecutor = new();
 
     private static readonly string? LogTag = typeof(Main).Namespace;
 
@@ -27,7 +28,11 @@ public class Main : IAsyncPlugin, ISettingProvider, IContextMenu
             if (query.FirstSearch == Constants.UserEntryConstants.DatabaseControlKeyword)
             {
                 return ResultsFactory.CreateControlResults(!string.IsNullOrWhiteSpace(_settings.KeyFileAbsolutePath),
-                    () => { _loadDatabaseTaskExecutor.Execute(LoadDatabase, 0); }, CloseDatabase);
+                    () => { _loadDatabaseTaskExecutor.Execute(LoadDatabase, 0); }, () =>
+                    {
+                        _closeDbTaskExecutor.Cancel();
+                        CloseDatabase();
+                    });
             }
 
             /*
@@ -76,12 +81,22 @@ public class Main : IAsyncPlugin, ISettingProvider, IContextMenu
      * Attempts to load and initialize the database based on the settings parameters provided by the user.
      * </summary>
      */
-    private void LoadDatabase()
+    private async void LoadDatabase()
     {
         try
         {
             if (_db != null) return;
 
+            if (_settings.RequireWindowsHello)
+            {
+                var result = await WindowsHelloHelper.Authenticate(Resources.WindowsHelloReasonMessage);
+                if (!result)
+                {
+                    _context?.API.ShowMsg(Resources.FailedLoadingLabel, "", Constants.ImageKeys.Main);
+                    return;
+                }
+            }
+            
             _context?.API.LogInfo(LogTag, "Attempting to load database");
             // Need to decrypt the encrypted fields before passing them to the KeePass library to load the database
             var decryptedFields = _settings.DecryptValues();
@@ -94,6 +109,11 @@ public class Main : IAsyncPlugin, ISettingProvider, IContextMenu
             _context?.API.LogInfo(LogTag, "Successfully loaded database");
             _context?.API.ShowMsg(Resources.LoadedSuccessfullyLabel, "",
                 Constants.ImageKeys.Main);
+
+            if (decryptedFields.CloseDbAfterDuration)
+            {
+                _closeDbTaskExecutor.Execute(CloseDatabase, decryptedFields.CloseDbDurationMinutes * 60000);
+            }
         }
         catch
         {
@@ -121,6 +141,7 @@ public class Main : IAsyncPlugin, ISettingProvider, IContextMenu
         _context?.API.SaveSettingJsonStorage<Settings>();
 
         if (!hasDatabaseChanges) return;
+        _closeDbTaskExecutor.Cancel();
         CloseDatabase();
     }
 

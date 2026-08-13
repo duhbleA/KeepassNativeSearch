@@ -14,10 +14,14 @@ public partial class SettingsPanel
     private const int MinClipboardClearDurationSec = 5;
     private const int MaxClipboardClearDurationSec = 1800;
 
+    private const int MinCloseDbAfterDurationMin = 1;
+    private const int MaxCloseDbAfterDurationMin = 1440;
+
     public SettingsPanel(Action<Settings> onSettingsChanged, Settings initialSettings)
     {
         _onSettingsChanged = onSettingsChanged;
         InitializeComponent();
+
 
         // Initialize field values with what is contained from the settings
         DatabaseAbsolutePathTextBox.Text = initialSettings.DatabaseAbsolutePath;
@@ -30,9 +34,11 @@ public partial class SettingsPanel
         SearchTagsCheckBox.IsChecked = initialSettings.SearchTags;
         SearchUserNameCheckBox.IsChecked = initialSettings.SearchUserName;
         ClearClipboardCheckbox.IsChecked = initialSettings.ClearClipboard;
-        var clipboardDurationSeconds = NormalizeClipboardDuration(initialSettings.ClearClipboardDurationSeconds);
+        var clipboardDurationSeconds = Normalize(initialSettings.ClearClipboardDurationSeconds,
+            MinClipboardClearDurationSec, MaxClipboardClearDurationSec);
         ClearClipboardDurationTextBox.Text = clipboardDurationSeconds.ToString();
         ClearClipboardDurationTextBox.IsEnabled = initialSettings.ClearClipboard;
+        RequireWindowsHelloCheckBox.IsChecked = initialSettings.RequireWindowsHello;
         if (!initialSettings.ClearClipboard)
         {
             DurationRangeWarningLabel.Visibility = Visibility.Hidden;
@@ -42,6 +48,24 @@ public partial class SettingsPanel
             DurationRangeWarningLabel.Visibility =
                 initialSettings.ClearClipboardDurationSeconds is < MinClipboardClearDurationSec
                     or > MaxClipboardClearDurationSec
+                    ? Visibility.Visible
+                    : Visibility.Hidden;
+        }
+
+        CloseDbAfterDurationCheckBox.IsChecked = initialSettings.CloseDbAfterDuration;
+        var closeDbMinutes = Normalize(initialSettings.CloseDbDurationMinutes, MinCloseDbAfterDurationMin,
+            MaxCloseDbAfterDurationMin);
+        CloseDbAfterDurationTextBox.Text = closeDbMinutes.ToString();
+        CloseDbAfterDurationTextBox.IsEnabled = initialSettings.CloseDbAfterDuration;
+        if (!initialSettings.CloseDbAfterDuration)
+        {
+            CloseDbDurationRangeWarningLabel.Visibility = Visibility.Hidden;
+        }
+        else
+        {
+            CloseDbDurationRangeWarningLabel.Visibility =
+                initialSettings.CloseDbDurationMinutes is < MinCloseDbAfterDurationMin
+                    or > MaxCloseDbAfterDurationMin
                     ? Visibility.Visible
                     : Visibility.Hidden;
         }
@@ -100,39 +124,35 @@ public partial class SettingsPanel
 
     private void ClearClipboardDurationTextBoxOnPreviewTextInput(object sender, TextCompositionEventArgs e)
     {
-        var textBox = sender as TextBox;
-        var fullText = GetProposedText(textBox, e.Text);
-
-        var isTextNonNegativeInteger = IsTextNonNegativeInteger(fullText);
-        if (isTextNonNegativeInteger)
-        {
-            UpdateContent();
-        }
-
-        e.Handled = !isTextNonNegativeInteger;
+        DoOnPreviewText(sender, e);
     }
 
-    private void ClearClipboardDurationTextBoxOnPasting(object sender, DataObjectPastingEventArgs e)
+    private void ClearClipboardDurationTextBoxOnPasting(object sender, DataObjectPastingEventArgs
+        e)
     {
-        if (e.DataObject.GetDataPresent(DataFormats.Text))
-        {
-            TextBox? textBox = sender as TextBox;
-            string? pastedText = (string)e.DataObject.GetData(DataFormats.Text);
-            string fullText = GetProposedText(textBox, pastedText);
+        DoOnPasting(sender, e);
+    }
 
-            if (!IsTextNonNegativeInteger(fullText))
-            {
-                e.CancelCommand();
-            }
-            else
-            {
-                UpdateContent();
-            }
-        }
-        else
-        {
-            e.CancelCommand();
-        }
+    private void CloseDbAfterDurationCheckBoxOnClick(object sender, RoutedEventArgs e)
+    {
+        CloseDbAfterDurationTextBox.IsEnabled =
+            CloseDbAfterDurationCheckBox.IsChecked ?? SettingsDefaults.CloseDbAfterDuration;
+        UpdateContent();
+    }
+
+    private void CloseDbAfterDurationTextBoxOnPreviewTextInput(object sender, TextCompositionEventArgs e)
+    {
+        DoOnPreviewText(sender, e);
+    }
+
+    private void CloseDbAfterDurationTextBoxOnPasting(object sender, DataObjectPastingEventArgs e)
+    {
+        DoOnPasting(sender, e);
+    }
+
+    private void RequireWindowsHelloCheckBoxOnClick(object sender, RoutedEventArgs e)
+    {
+        UpdateContent();
     }
 
     private void UpdateContent()
@@ -161,6 +181,18 @@ public partial class SettingsPanel
                             : Visibility.Hidden;
                 }
 
+                if (!int.TryParse(CloseDbAfterDurationTextBox.Text, out var closeDbDuration))
+                {
+                    closeDbDuration = SettingsDefaults.CloseDbDurationMinutes;
+                }
+                else
+                {
+                    CloseDbDurationRangeWarningLabel.Visibility =
+                        closeDbDuration is < MinCloseDbAfterDurationMin or > MaxCloseDbAfterDurationMin
+                            ? Visibility.Visible
+                            : Visibility.Hidden;
+                }
+
                 var updatedSettings = new Settings
                 {
                     DatabaseAbsolutePath = DatabaseAbsolutePathTextBox.Text,
@@ -173,18 +205,24 @@ public partial class SettingsPanel
                     SearchGroups = SearchGroupCheckBox.IsChecked ?? SettingsDefaults.SearchGroups,
                     SearchUserName = SearchUserNameCheckBox.IsChecked ?? SettingsDefaults.SearchUsername,
                     ClearClipboard = ClearClipboardCheckbox.IsChecked ?? SettingsDefaults.ClearClipboard,
-                    ClearClipboardDurationSeconds = NormalizeClipboardDuration(clipboardDuration)
+                    RequireWindowsHello = RequireWindowsHelloCheckBox.IsChecked ?? SettingsDefaults.RequireWindowsHello,
+                    ClearClipboardDurationSeconds = Normalize(clipboardDuration, MinClipboardClearDurationSec,
+                        MaxClipboardClearDurationSec),
+                    CloseDbAfterDuration =
+                        CloseDbAfterDurationCheckBox.IsChecked ?? SettingsDefaults.CloseDbAfterDuration,
+                    CloseDbDurationMinutes = Normalize(closeDbDuration, MinCloseDbAfterDurationMin,
+                        MaxCloseDbAfterDurationMin)
                 };
                 _onSettingsChanged(updatedSettings);
             });
         });
     }
 
-    private static int NormalizeClipboardDuration(int clipboardDuration)
+    private static int Normalize(int duration, int min, int max)
     {
-        return clipboardDuration is < MinClipboardClearDurationSec or > MaxClipboardClearDurationSec
-            ? SettingsDefaults.ClearClipboardDurationSeconds
-            : clipboardDuration;
+        return (duration < min || duration > max)
+            ? SettingsDefaults.CloseDbDurationMinutes
+            : duration;
     }
 
     private bool IsTextNonNegativeInteger(string text)
@@ -200,5 +238,42 @@ public partial class SettingsPanel
         var selectionLength = textBox.SelectionLength;
 
         return currentText.Remove(selectionStart, selectionLength).Insert(selectionStart, newText);
+    }
+
+    private void DoOnPasting(object sender, DataObjectPastingEventArgs e)
+    {
+        if (e.DataObject.GetDataPresent(DataFormats.Text))
+        {
+            TextBox? textBox = sender as TextBox;
+            string? pastedText = (string)e.DataObject.GetData(DataFormats.Text);
+            string fullText = GetProposedText(textBox, pastedText);
+
+            if (!IsTextNonNegativeInteger(fullText))
+            {
+                e.CancelCommand();
+            }
+            else
+            {
+                UpdateContent();
+            }
+        }
+        else
+        {
+            e.CancelCommand();
+        }
+    }
+
+    private void DoOnPreviewText(object sender, TextCompositionEventArgs e)
+    {
+        var textBox = sender as TextBox;
+        var fullText = GetProposedText(textBox, e.Text);
+
+        var isTextNonNegativeInteger = IsTextNonNegativeInteger(fullText);
+        if (isTextNonNegativeInteger)
+        {
+            UpdateContent();
+        }
+
+        e.Handled = !isTextNonNegativeInteger;
     }
 }

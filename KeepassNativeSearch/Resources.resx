@@ -132,4 +132,24 @@
         <value>* Duration is out of the acceptable range (5-1800). Using default (10).</value>
     </data>
 
+    <data name="CloseDbAfterDurationLabel" xml:space="preserve">
+        <value>Close KeePass file after a duration</value>
+    </data>
+
+    <data name="MinutesLabel" xml:space="preserve">
+        <value>minute(s)</value>
+    </data>
+    
+    <data name="CloseDbAfterDurationWarningLabel" xml:space="preserve">
+        <value>* Duration is out of the acceptable range (1-1440). Using default (10).</value>
+    </data>
+
+    <data name="RequireWindowsHelloLabel" xml:space="preserve">
+        <value>If available, require Windows Hello before opening a KeePass file</value>
+    </data>
+
+    <data name="WindowsHelloReasonMessage" xml:space="preserve">
+        <value>Authenticate to open KeePass file</value>
+    </data>
+
 </root>

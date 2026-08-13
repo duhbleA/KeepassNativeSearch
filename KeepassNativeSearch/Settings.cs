@@ -30,6 +30,18 @@ public class Settings
      */
     public int ClearClipboardDurationSeconds { get; set; } = SettingsDefaults.ClearClipboardDurationSeconds;
 
+    /**
+     * Whether automatic database closing should be enabled
+     */
+    public bool CloseDbAfterDuration { get; set; } = SettingsDefaults.CloseDbAfterDuration;
+
+    /**
+     * Duration in minutes before database should be cleared.
+     */
+    public int CloseDbDurationMinutes { get; set; } = SettingsDefaults.CloseDbDurationMinutes;
+
+    public bool RequireWindowsHello { get; set; } = SettingsDefaults.RequireWindowsHello;
+
     private bool Equals(Settings other)
     {
         return DatabaseAbsolutePath == other.DatabaseAbsolutePath && DatabasePassword == other.DatabasePassword &&
@@ -37,7 +49,8 @@ public class Settings
                SearchNotes == other.SearchNotes && SearchUrl == other.SearchUrl && SearchTags == other.SearchTags &&
                SearchUserName == other.SearchUserName && ClearClipboard == other.ClearClipboard &&
                ClearClipboardDurationSeconds == other.ClearClipboardDurationSeconds &&
-               SearchGroups == other.SearchGroups;
+               SearchGroups == other.SearchGroups && CloseDbAfterDuration == other.CloseDbAfterDuration &&
+               CloseDbDurationMinutes == other.CloseDbDurationMinutes && RequireWindowsHello == other.RequireWindowsHello;
     }
 
     public override bool Equals(object? obj)
@@ -68,6 +81,9 @@ public class Settings
         hashCode.Add(ClearClipboard);
         hashCode.Add(SearchGroups);
         hashCode.Add(ClearClipboardDurationSeconds);
+        hashCode.Add(CloseDbAfterDuration);
+        hashCode.Add(CloseDbDurationMinutes);
+        hashCode.Add(RequireWindowsHello);
         return hashCode.ToHashCode();
     }
 
@@ -92,6 +108,9 @@ public class Settings
         SearchUserName = updatedSettings.SearchUserName;
         ClearClipboard = updatedSettings.ClearClipboard;
         ClearClipboardDurationSeconds = updatedSettings.ClearClipboardDurationSeconds;
+        CloseDbAfterDuration = updatedSettings.CloseDbAfterDuration;
+        CloseDbDurationMinutes = updatedSettings.CloseDbDurationMinutes;
+        RequireWindowsHello = updatedSettings.RequireWindowsHello;
     }
 
     /**
@@ -113,7 +132,10 @@ public class Settings
             SearchGroups = SearchGroups,
             SearchUserName = SearchUserName,
             ClearClipboard = ClearClipboard,
-            ClearClipboardDurationSeconds = ClearClipboardDurationSeconds
+            ClearClipboardDurationSeconds = ClearClipboardDurationSeconds,
+            CloseDbAfterDuration = CloseDbAfterDuration,
+            CloseDbDurationMinutes = CloseDbDurationMinutes,
+            RequireWindowsHello = RequireWindowsHello
         };
     }
 
@@ -144,4 +166,7 @@ public static class SettingsDefaults
     public const bool SearchGroups = false;
     public const bool ClearClipboard = true;
     public const int ClearClipboardDurationSeconds = 10;
+    public const bool CloseDbAfterDuration = true;
+    public const int CloseDbDurationMinutes = 10;
+    public const bool RequireWindowsHello = true;
 }

@@ -263,5 +263,35 @@ namespace KeepassNativeSearch {
                 return ResourceManager.GetString("DurationWarningLabel", resourceCulture);
             }
         }
+        
+        public static string CloseDbAfterDurationLabel {
+            get {
+                return ResourceManager.GetString("CloseDbAfterDurationLabel", resourceCulture);
+            }
+        }
+        
+        public static string MinutesLabel {
+            get {
+                return ResourceManager.GetString("MinutesLabel", resourceCulture);
+            }
+        }
+        
+        public static string CloseDbAfterDurationWarningLabel {
+            get {
+                return ResourceManager.GetString("CloseDbAfterDurationWarningLabel", resourceCulture);
+            }
+        }
+        
+        public static string RequireWindowsHelloLabel {
+            get {
+                return ResourceManager.GetString("RequireWindowsHelloLabel", resourceCulture);
+            }
+        }
+        
+        public static string WindowsHelloReasonMessage {
+            get {
+                return ResourceManager.GetString("WindowsHelloReasonMessage", resourceCulture);
+            }
+        }
     }
 }
