@@ -62,6 +62,7 @@
 
     <Delete Files="$(ZipFilePath)" Condition="Exists('$(ZipFilePath)')" />
     <ZipDirectory SourceDirectory="$(PublishDir)" DestinationFile="$(ZipFilePath)" />
+    <RemoveDir Directories="$(PublishDir)" Condition="Exists('$(PublishDir)')" />
 
     <Message Importance="high" Text="Successfully created deployment package at: $(ZipFilePath)" />
   </Target>
