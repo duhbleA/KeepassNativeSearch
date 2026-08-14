@@ -1,36 +1,68 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <PropertyGroup>
+    <TargetFramework>net9.0-windows10.0.22621.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <CopyOutputSymbolsToPublishDirectory>false</CopyOutputSymbolsToPublishDirectory>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+    <Version>1.0.4</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Flow.Launcher.Plugin" Version="5.3.1" />
+    <PackageReference Include="Pidamg.KeePass.Kdbx" Version="0.1.1" />
+    <PackageReference Include="System.Security.Cryptography.ProtectedData" Version="10.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="plugin.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+
+
+    <Content Include="Images\**\*">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <Target Name="DeleteDepsJson" AfterTargets="Publish">
+    <Delete Files="$(PublishDir)$(TargetName).deps.json" />
+    <Delete Files="$(PublishDir)Flow.Launcher.Plugin.dll" />
+    <Delete Files="$(PublishDir)JetBrains.Annotations.dll" />
+  </Target>
+
+  <Target Name="ModifyJsonAfterPublish" AfterTargets="Publish">
+    <Exec
+      Command="powershell -Command &quot;$jsonPath = '$(PublishDir)plugin.json'; $content = Get-Content $jsonPath -Raw | ConvertFrom-Json; $content.Version = '$(Version)'; $content | ConvertTo-Json -Depth 10 | Set-Content $jsonPath&quot;" />
+  </Target>
+
+  <Target Name="ZipPublishOutput" AfterTargets="ModifyJsonAfterPublish">
     <PropertyGroup>
-        <TargetFramework>net9.0-windows10.0.22621.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-        <UseWPF>true</UseWPF>
-<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
+      <ZipFilePath>$(PublishDir)..\$(MSBuildProjectName)-v$(Version).zip</ZipFilePath>
     </PropertyGroup>
 
-    <ItemGroup>
-      <PackageReference Include="Flow.Launcher.Plugin" Version="5.3.1" />
-      <PackageReference Include="Pidamg.KeePass.Kdbx" Version="0.1.1" />
-      <PackageReference Include="System.Security.Cryptography.ProtectedData" Version="10.0.10" />
-    </ItemGroup>
+    <Delete Files="$(ZipFilePath)" Condition="Exists('$(ZipFilePath)')" />
+    <ZipDirectory SourceDirectory="$(PublishDir)" DestinationFile="$(ZipFilePath)" />
 
-    <ItemGroup>
-      <Folder Include="Images\" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <EmbeddedResource Update="Resources.resx">
-        <Generator>PublicResXFileCodeGenerator</Generator>
-        <LastGenOutput>Strings.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Compile Update="Resources.Designer.cs">
-        <DesignTime>True</DesignTime>
-        <AutoGen>True</AutoGen>
-        <DependentUpon>Resources.resx</DependentUpon>
-      </Compile>
-    </ItemGroup>
-
+    <Message Importance="high" Text="Successfully created deployment package at: $(ZipFilePath)" />
+  </Target>
 </Project>

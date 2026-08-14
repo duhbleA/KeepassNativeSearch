@@ -4,7 +4,7 @@
   "Name": "KeepassNativeSearch",
   "Description": "Search and copy passwords from a KeePass file",
   "Author": "CallMeDuracell",
-  "Version": "1.0.4",
+  "Version": "To be determined by publish target",
   "Language": "csharp",
   "ExecuteFileName": "KeepassNativeSearch.dll",
   "IcoPath": "Images\\keepassdb.png"
