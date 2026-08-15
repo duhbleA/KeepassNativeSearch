@@ -7,7 +7,15 @@
     <UseWPF>true</UseWPF>
     <CopyOutputSymbolsToPublishDirectory>false</CopyOutputSymbolsToPublishDirectory>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-    <Version>1.0.4</Version>
+    <Version>1.0.5</Version>
+    <Title>KeepassNativeSearch</Title>
+    <Authors>CallMeDuracell</Authors>
+    <Description>A Flow Launcher plugin that displays local KeePass file entries</Description>
+    <Copyright>MIT</Copyright>
+    <PackageProjectUrl>https://github.com/duhbleA/KeepassNativeSearch</PackageProjectUrl>
+    <PackageIcon>keepassdb.png</PackageIcon>
+    <RepositoryUrl>https://github.com/duhbleA/KeepassNativeSearch</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
