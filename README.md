@@ -4,7 +4,7 @@ A [Flow Launcher](https://www.flowlauncher.com) plugin to streamline the process
 <img src="https://user-images.githubusercontent.com/6903107/207168016-85d0dd16-1f3b-4d42-9d37-0e0d5a596ead.png" width="275" height="50"/>
 
 ## Overview
-KeePassNativeSearch is a Flow Launcher Plugin that enables querying a local KeePass database for its contents directly from the search menu.
+KeepassNativeSearch is a Flow Launcher Plugin that enables querying a local KeePass database for its contents directly from the search menu.
 
 ## Features
 
