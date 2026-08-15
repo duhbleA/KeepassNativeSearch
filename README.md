@@ -1,4 +1,4 @@
-# <img src="KeepassNativeSearch/Images/keepassdb.png" width="120" height="140" /> KeeassNativeSearch
+# <img src="KeepassNativeSearch/Images/keepassdb.png" width="120" height="140" /> KeepassNativeSearch
 A [Flow Launcher](https://www.flowlauncher.com) plugin to streamline the process of finding KeePass file entries and to teach me more about C#.
 
 <img src="https://user-images.githubusercontent.com/6903107/207168016-85d0dd16-1f3b-4d42-9d37-0e0d5a596ead.png" width="275" height="50"/>
