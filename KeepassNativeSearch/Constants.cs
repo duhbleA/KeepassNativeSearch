@@ -11,7 +11,7 @@ public static class Constants
     }
 
     /**
-     * Image keys to show on specific kinds of results.
+     * Image keys to show for different kinds of results.
      */
     public static class ImageKeys
     {

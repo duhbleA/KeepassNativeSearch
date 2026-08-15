@@ -36,7 +36,14 @@ public static class Extensions
             _ => throw new ArgumentOutOfRangeException(nameof(field), field, null)
         };
     }
-
+    
+    /**
+     * <summary>Joins all containing fields into a neat comma-separated list.</summary>
+     *
+     * <param name="field">List of fields a keyword was found in.</param>
+     *
+     * <returns>A comma-delimited list of containing fields where keyword entries were found.</returns>
+     */
     public static string Label(this List<ScoringEntryFilter.ContainingField> field)
     {
         return string.Join(", ", field.Select(value => value.Label()));

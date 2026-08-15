@@ -94,8 +94,11 @@ public class Main : IAsyncPlugin, ISettingProvider, IContextMenu
     {
         try
         {
+            // Bail early if the database is open
             if (_db != null) return;
 
+            // If the windows hello setting is enabled, prompt the user for authentication. The loading continues
+            // only if the authentication was successful or the OS doesn't support it.
             if (_settings.RequireWindowsHello)
             {
                 var result = await WindowsHelloHelper.Authenticate(Resources.WindowsHelloReasonMessage);
@@ -109,7 +112,7 @@ public class Main : IAsyncPlugin, ISettingProvider, IContextMenu
             _context?.API.LogInfo(LogTag, "Attempting to load database");
             // Need to decrypt the encrypted fields before passing them to the KeePass library to load the database
             var decryptedFields = _settings.DecryptValues();
-
+            
             var normalizedKeyFilePath = string.IsNullOrWhiteSpace(decryptedFields.KeyFileAbsolutePath)
                 ? null
                 : decryptedFields.KeyFileAbsolutePath;
@@ -119,6 +122,8 @@ public class Main : IAsyncPlugin, ISettingProvider, IContextMenu
             _context?.API.ShowMsg(Resources.LoadedSuccessfullyLabel, "",
                 Constants.ImageKeys.Main);
 
+            // Schedule automatic database closing if the setting is enabled by the user based on their provided
+            // duration
             if (decryptedFields.CloseDbAfterDuration)
             {
                 _closeDbTaskExecutor.Execute(CloseDatabase, decryptedFields.CloseDbDurationMinutes * 60000);
@@ -126,6 +131,7 @@ public class Main : IAsyncPlugin, ISettingProvider, IContextMenu
         }
         catch
         {
+            // Overly broad and intentionally empty reporting to avoid leaking metadata about the database.
             _db = null;
             _context?.API.LogError(LogTag, "Opening the KeePass database failed");
             _context?.API.ShowMsg(Resources.FailedLoadingLabel, "", Constants.ImageKeys.Main);
