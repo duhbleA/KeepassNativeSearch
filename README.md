@@ -1,5 +1,7 @@
 # <img src="KeepassNativeSearch/Images/keepassdb.png" width="120" height="140" /> KeeassNativeSearch
-A Flow Launcher plugin to streamline the process of finding KeePass file entries and to teach me more about C#.
+A [Flow Launcher](https://www.flowlauncher.com) plugin to streamline the process of finding KeePass file entries and to teach me more about C#.
+
+<img src="https://user-images.githubusercontent.com/6903107/207168016-85d0dd16-1f3b-4d42-9d37-0e0d5a596ead.png" width="275" height="50"/>
 
 ## Overview
 KeePassNativeSearch is a Flow Launcher Plugin that enables querying a local KeePass database for its contents directly from the search menu.
@@ -90,6 +92,8 @@ Unzip the contents of the published plugin from the step above to a folder in th
 
 # Acknowledgements
 Special acknowledgement go out to the kepass-dotnet project for providing the C# library to easily open and read KeePass files (https://github.com/pidamg/keepass-dotnet). Any functionality directly related to this plugin's ability to work with KeePass files comes from this library.
+
+Flow Launcher, which is an amazing Quick File Search & App Launcher for Windows (https://flowlauncher.com)
 
 KeePass, the original developer of the file format (https://keepass.info)
 
